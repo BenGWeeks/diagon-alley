@@ -1,0 +1,103 @@
+= Testing Guide
+:toc:
+:toc-placement!:
+
+This document describes how to test the Diagon Alley extension.
+
+toc::[]
+
+== Running Tests
+
+=== Unit Tests
+
+Run the test suite with pytest:
+
+[source,bash]
+----
+make test
+----
+
+This runs pytest on the `tests/` directory.
+
+=== Manual Testing
+
+==== Prerequisites
+
+1. LNbits must be running (use `/run` command or start manually)
+2. Extension must be enabled in LNbits
+
+==== Testing the Public Marketplace
+
+1. Open http://localhost:5000/diagonalley/market in your browser
+2. Test the following functionality:
+   - Default merchants load (if configured)
+   - Adding a merchant by npub
+   - Browsing products
+   - Searching/filtering products
+   - Product detail view
+
+==== Testing with Claude Code
+
+Use the Claude Code Chrome extension to:
+
+1. Open the application in a Chromium-based browser (Edge, Chrome, or Brave)
+2. Take screenshots to verify UI changes
+3. Interact with the application to test functionality
+
+== Code Quality Checks
+
+Before committing, run all checks:
+
+[source,bash]
+----
+make check
+----
+
+This runs:
+
+- `black --check` - Python code formatting check
+- `ruff check` - Python linting
+
+== Formatting Code
+
+To automatically format code:
+
+[source,bash]
+----
+make format
+----
+
+This runs:
+
+- `black` - Formats Python files
+- `ruff --fix` - Fixes Python linting issues
+
+== Test Structure
+
+Organize tests in `/tests/` following LNbits conventions:
+
+[source]
+----
+tests/
+├── __init__.py
+├── conftest.py      # Shared fixtures
+├── api/             # API endpoint tests
+│   └── test_*.py
+├── unit/            # Unit tests
+│   └── test_*.py
+└── ui/              # Playwright UI tests
+    └── test_*.py
+----
+
+== Writing Tests
+
+[source,python]
+----
+import pytest
+
+@pytest.mark.asyncio
+async def test_marketplace_route():
+    """Test that marketplace route returns 200."""
+    # Test implementation
+    pass
+----

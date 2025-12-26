@@ -1,0 +1,48 @@
+= Troubleshooting Guide
+:toc:
+:toc-placement!:
+
+This document contains common problems and their solutions when working with the Diagon Alley extension.
+
+toc::[]
+
+== Common Issues
+
+[cols="1,2", options="header"]
+|===
+| Problem | Solution
+
+| Extension not appearing in LNbits
+| Ensure the extension is symlinked correctly to `lnbits/lnbits/extensions/diagonalley`. Restart LNbits.
+
+| `make format` fails with "command not found"
+| Install Python dependencies with `pip install black ruff` or `uv pip install black ruff`.
+
+| `make check` fails with formatting errors
+| Run `make format` first to auto-fix formatting issues, then re-run `make check`.
+
+| Marketplace shows no products
+| Check that you have merchants added. Add merchants by their npub or naddr in the marketplace interface.
+
+| Relay connection fails
+| Verify the relay URLs are correct and accessible. Try different relays from the defaults list.
+
+| Products not loading from a merchant
+| The merchant may not have published products to the relays you're connected to. Try adding more relays.
+
+| Images not loading
+| Verify image URLs are accessible (HTTPS recommended). Check that image hosting allows cross-origin requests.
+
+| LocalStorage not persisting
+| Check browser privacy settings. Some browsers clear localStorage in private/incognito mode.
+
+| LNbits dev server won't start
+| Check if port 5000 is already in use with `lsof -ti:5000`. Kill existing processes or use a different port.
+
+| Vue template variables not rendering
+| Use `${...}` delimiters, not `{{...}}` (conflicts with Jinja2).
+
+| Material icon not showing
+| Check icon name at https://fonts.google.com/icons (e.g., use `storefront` not `store`).
+
+|===

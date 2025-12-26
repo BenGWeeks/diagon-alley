@@ -1,0 +1,86 @@
+= Deployment Guide
+:toc:
+:toc-placement!:
+
+This document describes how to deploy the Diagon Alley extension.
+
+toc::[]
+
+== Prerequisites
+
+- LNbits instance (v1.4.0 or later, as defined in `config.json`)
+- Python 3.10+
+
+== Installation
+
+=== From LNbits Extension Manager
+
+1. Open your LNbits admin interface
+2. Navigate to Extensions
+3. Search for "Diagon Alley"
+4. Click Install
+
+=== Manual Installation
+
+1. Clone the repository into your LNbits extensions directory:
++
+[source,bash]
+----
+cd /path/to/lnbits/lnbits/extensions
+git clone https://github.com/lnbits/Diagon-Alley.git diagonalley
+----
+
+2. Restart LNbits to load the extension
+
+=== Development Installation (Symbolic Link)
+
+For development, create a symbolic link:
+
+[source,bash]
+----
+cd /path/to/lnbits/lnbits/extensions
+ln -s /path/to/diagon-alley diagonalley
+----
+
+== Configuration
+
+=== Routes
+
+[cols="1,2,1", options="header"]
+|===
+| Route | Description | Auth Required
+
+| `/diagonalley/` | Extension landing page | Yes (LNbits user)
+| `/diagonalley/market` | Public marketplace | No
+|===
+
+=== Sharing the Marketplace
+
+The public marketplace URL can be shared with anyone - no login required:
+
+----
+https://your-lnbits-instance.com/diagonalley/market
+----
+
+== Production Considerations
+
+=== Relay Selection
+
+Configure reliable Nostr relays for production:
+
+- Consider running your own relay for reliability
+- Use multiple relays for redundancy
+- Test relay connectivity before going live
+
+=== Security
+
+- Never expose private keys (nsec) publicly
+- Use HTTPS in production
+- Keep LNbits and extensions updated
+- Consider running behind a reverse proxy (nginx, caddy)
+
+=== Performance
+
+- The marketplace aggregates data from multiple merchants
+- Consider caching strategies for high-traffic deployments
+- Monitor relay response times

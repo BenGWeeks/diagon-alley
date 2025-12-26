@@ -1,0 +1,83 @@
+= Solution Design
+:toc:
+:toc-placement!:
+
+High-level architecture and design of the Diagon Alley extension.
+
+toc::[]
+
+== Overview
+
+Diagon Alley is a public marketplace aggregator that implements the buyer side of NIP-15 (Nostr Marketplace). It allows users to discover and browse products from multiple Nostr merchants.
+
+[source]
+----
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   LNbits UI     │────▶│  Diagon Alley   │────▶│  Nostr Relays   │
+│  (Vue/Quasar)   │     │   Extension     │     │                 │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+        │                       │
+        ▼                       ▼
+┌─────────────────┐     ┌─────────────────┐
+│  Public Market  │     │   Merchant      │
+│     (No Auth)   │     │   Stalls/Prods  │
+└─────────────────┘     └─────────────────┘
+----
+
+== Components
+
+=== Frontend (Vue.js/Quasar)
+
+* **Extension Page** (`/diagonalley/`) - LNbits user landing page
+* **Public Marketplace** (`/diagonalley/market`) - Customer-facing marketplace view
+* **Static Assets** - Pre-built Vue marketplace app in `static/market/`
+
+=== Backend (Python/FastAPI)
+
+* **Views** (`views.py`) - HTML page routes
+* **Templates** - Jinja2 templates in `templates/diagonalley/`
+
+=== Nostr Integration
+
+* **Event Types Consumed**:
+  ** Kind 30017 - Stall information (NIP-15)
+  ** Kind 30018 - Product listings (NIP-15)
+  ** Kind 0 - Merchant profiles (NIP-01)
+
+* **Relay Communication** - JavaScript client connects directly to Nostr relays
+
+== Data Flow
+
+=== Browsing Products
+
+[source]
+----
+1. User visits /diagonalley/market
+2. JavaScript loads merchant list (from localStorage or defaults)
+3. Connects to configured Nostr relays
+4. Subscribes to kind 30017/30018 events for each merchant
+5. Renders stalls and products in the UI
+----
+
+=== Adding a Merchant
+
+[source]
+----
+1. User enters npub or naddr
+2. JavaScript decodes the identifier
+3. Subscribes to merchant's events on relays
+4. Stores merchant in localStorage
+5. Products appear in the marketplace
+----
+
+== Key Design Decisions
+
+1. **Client-side Nostr** - Relay connections handled in browser JavaScript
+2. **No server-side storage** - Merchant preferences stored in localStorage
+3. **Public access** - Marketplace viewable without LNbits authentication
+4. **Pre-built Vue app** - Uses bundled marketplace from nostrmarket project
+
+== Related Projects
+
+* https://github.com/lnbits/nostrmarket[Nostr Market] - Merchant stall management (seller side)
+* https://github.com/lnbits/lnbits[LNbits] - Lightning Network wallet/accounts system

@@ -1,0 +1,52 @@
+= Frequently Asked Questions
+:toc:
+:toc-placement!:
+
+Common questions about the Diagon Alley extension.
+
+toc::[]
+
+[cols="1,2", options="header"]
+|===
+| Question | Answer
+
+| What is Diagon Alley?
+| A public Nostr marketplace aggregator that allows users to browse and discover products from multiple Nostr merchants in one place. It implements the buyer/browser side of NIP-15.
+
+| What are the prerequisites?
+| LNbits instance (v1.4.0+, as defined in `config.json`) and Python 3.10+.
+
+| How is this different from Nostr Market?
+| Nostr Market is for merchants to create and manage their stalls. Diagon Alley is for buyers to discover and browse products across multiple merchants.
+
+| Do users need to log in?
+| No! The public marketplace at `/diagonalley/market` is accessible without login. Users only need to log in to purchase products.
+
+| What NIPs does this implement?
+| NIP-15 (Marketplace) for product browsing, NIP-07 (Browser Extension) for login support is planned.
+
+| How do I add merchants?
+| Users can add merchants by their public key (npub) or naddr identifier in the marketplace interface.
+
+| What is NIP-15?
+| NIP-15 defines the Nostr Marketplace protocol, including event kinds 30017 (stall) and 30018 (product).
+
+| What is NIP-99?
+| NIP-99 defines Classified Listings (kind 30402). Support is planned for a future release, including Gamma Markets spec compatibility.
+
+| How do payments work?
+| When a customer places an order, a Lightning invoice is generated via LNbits. Once paid, the order is confirmed.
+
+| Can I customize the marketplace appearance?
+| Admin customization features (themes, titles, branding) are planned for future releases.
+
+| Where can I see the source code?
+| The upstream repository is at https://github.com/lnbits/Diagon-Alley
+
+| Where do I report bugs or request features?
+| Open an issue at https://github.com/lnbits/Diagon-Alley/issues
+
+| How do I contribute to the project?
+| Fork the repo, create a branch, make changes, run `make check`, and submit a PR.
+
+|===
