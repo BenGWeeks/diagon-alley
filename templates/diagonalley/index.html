@@ -1,0 +1,82 @@
+{% extends "base.html" %} {% from "macros.jinja" import window_vars with context
+%} {% block page %} {% raw %}
+<div class="row q-col-gutter-md justify-center q-pt-xl">
+  <div class="col-12 col-md-8 col-lg-6">
+    <q-card class="q-pa-lg">
+      <q-card-section class="text-center">
+        <img
+          src="/diagonalley/static/images/diagon-alley.png"
+          alt="Diagon Alley"
+          style="width: 128px; height: 128px"
+          class="q-mb-md"
+        />
+        <div class="text-h4 q-mb-sm">Diagon Alley</div>
+        <div class="text-subtitle1 text-grey q-mb-lg">
+          Public Nostr Marketplace Aggregator
+        </div>
+      </q-card-section>
+
+      <q-separator></q-separator>
+
+      <q-card-section>
+        <div class="text-body1 q-mb-md">
+          Diagon Alley is a public marketplace where you can browse and discover
+          products from multiple Nostr merchants in one place.
+        </div>
+
+        <q-list>
+          <q-item>
+            <q-item-section avatar>
+              <q-icon name="search" color="primary"></q-icon>
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Browse Multiple Merchants</q-item-label>
+              <q-item-label caption>Discover products from various Nostr vendors</q-item-label>
+            </q-item-section>
+          </q-item>
+
+          <q-item>
+            <q-item-section avatar>
+              <q-icon name="person_add" color="primary"></q-icon>
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Import Merchants</q-item-label>
+              <q-item-label caption>Add merchants by public key or naddr identifier</q-item-label>
+            </q-item-section>
+          </q-item>
+
+          <q-item>
+            <q-item-section avatar>
+              <q-icon name="public" color="primary"></q-icon>
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>No Account Required</q-item-label>
+              <q-item-label caption>Browse the marketplace without logging in</q-item-label>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-card-section>
+
+      <q-separator></q-separator>
+
+      <q-card-actions align="center" class="q-pa-md">
+        <q-btn
+          unelevated
+          color="primary"
+          size="lg"
+          icon="storefront"
+          label="Open Marketplace"
+          href="/diagonalley/market"
+          target="_blank"
+        ></q-btn>
+      </q-card-actions>
+
+      <q-card-section class="text-center text-grey text-caption">
+        The marketplace will open in a new tab. Share this link with anyone:
+        <br />
+        <code class="text-primary">/diagonalley/market</code>
+      </q-card-section>
+    </q-card>
+  </div>
+</div>
+{% endraw %} {% endblock %} {% block scripts %} {{ window_vars(user) }} {% endblock %}
