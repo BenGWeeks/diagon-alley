@@ -31,15 +31,19 @@ Diagon Alley is a public-facing marketplace aggregator that allows users to brow
 ## Nostr Protocol Support
 
 ### NIP-15: Nostr Marketplace
+
 Diagon Alley implements [NIP-15](https://github.com/nostr-protocol/nips/blob/master/15.md) for marketplace functionality:
+
 - Product listings (kind 30018)
 - Stall/merchant information (kind 30017)
 - Direct messages for orders
 
 ### NIP-99: Classified Listings (Coming Soon)
+
 Support for [NIP-99](https://github.com/nostr-protocol/nips/blob/master/99.md) classified listings is planned for a future release.
 
 ### Gamma Market Spec
+
 Compatible with the [Gamma Market](https://github.com/ArcadeLabsInc/gamma) specification for enhanced marketplace features.
 
 ## Installation
@@ -47,6 +51,7 @@ Compatible with the [Gamma Market](https://github.com/ArcadeLabsInc/gamma) speci
 ### As an LNbits Extension
 
 1. Clone this repository into your LNbits extensions folder:
+
    ```bash
    cd /path/to/lnbits/lnbits/extensions
    ln -s /path/to/diagon-alley diagonalley
@@ -58,10 +63,10 @@ Compatible with the [Gamma Market](https://github.com/ArcadeLabsInc/gamma) speci
 
 ### Routes
 
-| Route | Description | Auth Required |
-|-------|-------------|---------------|
-| `/diagonalley/` | Extension landing page | Yes (LNbits user) |
-| `/diagonalley/market` | Public marketplace | No |
+| Route                 | Description            | Auth Required     |
+| --------------------- | ---------------------- | ----------------- |
+| `/diagonalley/`       | Extension landing page | Yes (LNbits user) |
+| `/diagonalley/market` | Public marketplace     | No                |
 
 The public marketplace URL can be shared with anyone - no login required.
 
